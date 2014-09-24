@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="jumbotron">
+        <p class="lead">Select your tsv file. The first row should be labeled headers, which will be used to label fields in the mail merge.
+      </p>
+        <form method="post" action = 'compose' enctype="multipart/form-data">  <input type="file" name="file" >
+          <input type="submit" value="Upload">
+        </form>
+
+        Come back to this http://www.quirksmode.org/dom/inputfile.html if I want to make this prettier.
+      </div>
+
+
+{% endblock %}

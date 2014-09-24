@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="jumbotron">
+      	<h3>You file was uploaded successfully.</h3>
+      	<p class = "lead">These are your headers:
+      		<table class="table table-hover">
+  			{% for header in headers %}
+		    <tr><td>{{loop.index}}</td><td>{{ header }}</td>
+	    	{% endfor %}	
+		    </table>
+      </div>
+
+    <div>  
+	  <h5>If want a different file, select another tsv file.
+        <form method="post" action = 'upload' enctype="multipart/form-data">  <input type="file" name="file" >
+          <input type="submit" value="Upload"></form></h5>
+    </div>
+
+    <hr>
+    <h3>Compose your email.</h3><br>
+
+
+<form class="form-horizontal" role="form" method="post" action="test" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="fromEmail" class="col-sm-2 control-label">From</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" name="fromEmail" placeholder="Email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="toEmail" class="col-sm-2 control-label">To</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="toEmail" placeholder="Email Header Field">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="subjectEmail" class="col-sm-2 control-label">Subject</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="subjectEmail" placeholder="Subject">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="attachmentEmail" class="col-sm-2 control-label">Attachment</label>
+    <div class="col-sm-10">
+      <input type="file" class="form-control" name="attachmentEmail" value="0">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="textEmail" class="col-sm-2 control-label">Plain text body</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="5" name="textEmail"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="htmlEmail" class="col-sm-2 control-label">HTML text body</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="5" name="htmlEmail"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="session_num" class="col-sm-2 control-label">Session number. DO NOT EDIT.</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="session_num" value="{{session}}">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Test</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

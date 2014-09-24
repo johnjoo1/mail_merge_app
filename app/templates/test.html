@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+<p class="lead">Do you want to send an email to 
+	<div id="next_to"></div>?
+</p>
+
+<button type="button" class="btn btn-danger" id='Yes'>Yes</button>
+<button type="button" class="btn btn-default" id='No'>No</button>
+<button type="button" class="btn btn-danger" id='Send_all'>Send All</button>
+
+</div>
+
+<script type=text/javascript>
+console.log({{to_list|safe}})
+var session_id = {{session_number|safe}}
+var to_list = {{to_list|safe}};
+var nth_test_email = 0
+
+$( document ).ready(function(){
+	$('#next_to').html(to_list[0]);
+});
+
+$('#Yes').click(function(){
+	nth_test_email += 1;
+	console.log(nth_test_email);
+	console.log(to_list[nth_test_email]);
+	var posting = $.post( '/send_test_email', {test_email_to:to_list[nth_test_email], session_number:session_id})
+		.done(function(){
+			$("#next_to").html(to_list[nth_test_email]);
+		});
+});
+
+
+</script>
+
+
+
+{% endblock %}
